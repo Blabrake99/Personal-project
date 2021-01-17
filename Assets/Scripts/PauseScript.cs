@@ -47,6 +47,7 @@ public class PauseScript : MonoBehaviour
             PauseCanvas.SetActive(false);
 
         }
+        HideIfClickedOutside(PauseCanvas);
     }
 
     //pauses the game 
@@ -71,5 +72,19 @@ public class PauseScript : MonoBehaviour
     {
         //this puts the player on a new team 
         PlayerOBJ.GetComponent<Players_Script>().SetTeam(TeamDropDown.options[TeamDropDown.value].text);
+    }
+    private void HideIfClickedOutside(GameObject panel)
+    {
+
+        if (Input.GetMouseButton(0) && panel.activeSelf &&
+            !RectTransformUtility.RectangleContainsScreenPoint(
+                panel.GetComponent<RectTransform>(),
+                Input.mousePosition,
+                Camera.main) && IsPaused == true)
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            IsPaused = false;
+        }
     }
 }

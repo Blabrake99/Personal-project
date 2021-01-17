@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 public class BuildingCanvas : MonoBehaviour
 {
     public Building[] bases;
@@ -10,44 +11,31 @@ public class BuildingCanvas : MonoBehaviour
 
     bool clicked;
     float timer = .1f;
+    float quicktimer = .5f;
+    public bool movingSpawner;
+    bool onlyOnce;
     void Update()
     {
         bases = GameObject.FindObjectsOfType(typeof(Building)) as Building[];
-        if (Input.GetKey(KeyCode.Escape) || Input.GetMouseButton(1))
+        if (currentSpawner != false)
         {
-            if (gameObject.activeSelf == true)
+            if (currentSpawner.GetComponent<Spawner>().curState == Spawner.SpawnerStates.unlocked)
             {
-
-                Destroy(this.gameObject);
-                if (currentSpawner != null)
+                onlyOnce = false;
+                movingSpawner = true;
+            }
+            if (currentSpawner.GetComponent<Spawner>().curState == Spawner.SpawnerStates.Lock)
+            {
+                //this is here so when you place a spawner somewhere
+                //if doesn't close out of the building window 
+                if(onlyOnce == false)
                 {
-                    currentSpawner.SetActive(false);
+                    quicktimer = .5f;
+                    onlyOnce = true;
                 }
+                movingSpawner = false;
             }
         }
-        //this is for if you click off the page it'll just destroy it, but i know the issue of it
-        // i'm just going to fix it after other things 
-
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    RaycastHit hitInfo = new RaycastHit();
-        //    bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
-        //    if (hit)
-        //    {
-        //        if (hitInfo.transform.gameObject != this.gameObject )
-        //        {
-        //            if (gameObject.activeSelf == true)
-        //            {
-        //                Destroy(this.gameObject);
-        //                if (currentSpawner != null)
-        //                {
-        //                    currentSpawner.SetActive(false);
-
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
         if (CurrentBase == null)
         {
             for (int i = 0; i < bases.Length; i++)
@@ -80,6 +68,12 @@ public class BuildingCanvas : MonoBehaviour
                 CurrentBase.GetComponent<Building>().Spawner = currentSpawner;
             }
         }
+        if (quicktimer <= 0)
+        {
+            HideIfClickedOutside(gameObject);
+        }
+
+        quicktimer -= Time.deltaTime;
     }
 
     public void DestroyBTN()
@@ -92,8 +86,33 @@ public class BuildingCanvas : MonoBehaviour
         Destroy(CurrentBase);
 
     }
-    public void SpawnUnit()
-    {
 
+    //this will detect if you click off the canvas or just want to
+    //leave the canvas in general
+
+    private void HideIfClickedOutside(GameObject panel)
+    {
+        
+        if (Input.GetMouseButton(0) && panel.activeSelf &&
+            !RectTransformUtility.RectangleContainsScreenPoint(
+                panel.GetComponent<RectTransform>(),
+                Input.mousePosition,
+                Camera.main) && movingSpawner == false
+                || Input.GetKey(KeyCode.Escape) && movingSpawner == false)
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            if (gameObject.activeSelf == true)
+            {
+
+                Destroy(this.gameObject);
+                if (currentSpawner != null)
+                {
+                    currentSpawner.SetActive(false);
+                }
+            }
+        }
     }
+
+
 }

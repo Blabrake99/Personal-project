@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 3313506720852438861}
   - component: {fileID: 217842871803490280}
   - component: {fileID: 8952403376237868733}
+  - component: {fileID: 5687596735196887764}
   m_Layer: 5
   m_Name: Delete
   m_TagString: Untagged
@@ -639,6 +640,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!223 &5687596735196887764
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6763639692586232486}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &7026010669814604381
 GameObject:
   m_ObjectHideFlags: 0
