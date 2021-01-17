@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 3807024779188550813}
   - component: {fileID: 3807024779188550787}
   - component: {fileID: 3807024779188550810}
-  - component: {fileID: 4490345015443627394}
   m_Layer: 0
   m_Name: B_AI
   m_TagString: Unit
@@ -161,25 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05e8661db763434eb3e3c6c17cf980c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!119 &4490345015443627394
-Projector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3807024779188550808}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_NearClipPlane: 0.1
-  m_FarClipPlane: 1
-  m_FieldOfView: 60
-  m_AspectRatio: 1
-  m_Orthographic: 1
-  m_OrthographicSize: 0.4
-  m_Material: {fileID: 0}
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1001 &6716676516288324934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -260,7 +240,7 @@ PrefabInstance:
     - target: {fileID: 3879279638161581051, guid: 966ee2a39c488404b8a93e778f128b9c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2431188189974795967, guid: 966ee2a39c488404b8a93e778f128b9c, type: 3}
