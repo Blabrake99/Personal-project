@@ -19,6 +19,8 @@ public class Actual_AI : MonoBehaviour
 
     public Team Teams => team;
 
+    [SerializeField]
+    GameObject CircleUnderTroop;
 
     public Transform Target { get; private set; }
 
@@ -38,10 +40,11 @@ public class Actual_AI : MonoBehaviour
     public bool IsIdle;
 
     public bool Selected { get; set; }
+    GameObject Player;
     private void Awake()
     {
         LastIdlePos = this.transform.position;
-
+        Player = GameObject.Find("PlayerOBJ");
         InitializeStateMachine();
     }
 
@@ -71,6 +74,8 @@ public class Actual_AI : MonoBehaviour
 
     public void Fire()
     {
+
+
         if (Target != null)
         {
             if (Target.GetComponent<Actual_AI>() != null)
@@ -104,6 +109,21 @@ public class Actual_AI : MonoBehaviour
     protected void Update()
     {
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+        //this figures out if the unit is selected by the player
+        if (Player.GetComponent<Players_Script>().SelectedUnitList.Count >= 0)
+        {
+            for (int i = 0; i <= Player.GetComponent<Players_Script>().SelectedUnitList.Count; i++)
+            {
+                if (Player.GetComponent<Players_Script>().SelectedUnitList.Contains(this.gameObject))
+                {
+                    CircleOn();
+                }
+                else
+                {
+                    CircleOff();
+                }
+            }
+        }
         if (IsIdle == true)
         {
             LastIdlePos = this.transform.position;
@@ -142,6 +162,12 @@ public class Actual_AI : MonoBehaviour
     {
         team = (Team)System.Enum.Parse(typeof(Team), t);
     }
-
-
+    public void CircleOn()
+    {
+        CircleUnderTroop.SetActive(true);
+    }
+    public void CircleOff()
+    {
+        CircleUnderTroop.SetActive(false);
+    }
 }

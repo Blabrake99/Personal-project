@@ -62,16 +62,20 @@ public class Players_Script : MonoBehaviour
             {
                 for (int i = 0; i < SelectedUnitList.Count; i++)
                 {
+
                     if (SelectedUnitList[i] != null && team.ToString() == SelectedUnitList[i].GetComponent<Actual_AI>().Teams.ToString())
                     {
+
                         if (SelectedUnitList[i].GetComponent<Actual_AI>().Selected == true)
                         {
-                            SelectedUnitList[i].GetComponent<Actual_AI>().Selected = false;
+                            //SelectedUnitList[i].GetComponent<Actual_AI>().Selected = false;
                         }
+                        
                     }
                 }
 
             }
+
             SelectedUnitList.Clear();
         }
         // If we let go of the left mouse button, end selection
