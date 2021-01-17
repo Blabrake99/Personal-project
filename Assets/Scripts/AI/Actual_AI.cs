@@ -6,6 +6,7 @@ public class Actual_AI : MonoBehaviour
 {
 
     #region AI_Stats_Based_On_UnitType
+    public int fullHealth;
     public int health;
     public float buildSpeed;
     public int attackDamage;
@@ -42,10 +43,11 @@ public class Actual_AI : MonoBehaviour
     public bool Selected { get; set; }
     GameObject Player;
     private void Awake()
-    {
+    {        
         LastIdlePos = this.transform.position;
         Player = GameObject.Find("PlayerOBJ");
         InitializeStateMachine();
+
     }
 
     private void InitializeStateMachine()
@@ -108,6 +110,10 @@ public class Actual_AI : MonoBehaviour
 
     protected void Update()
     {
+
+        if(fullHealth == 0)
+            fullHealth = health;
+
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
         //this figures out if the unit is selected by the player
         if (Player.GetComponent<Players_Script>().SelectedUnitList.Count >= 0)
