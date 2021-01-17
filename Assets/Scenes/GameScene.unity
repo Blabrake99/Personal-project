@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 313209293}
   - component: {fileID: 313209292}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Unit Health Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3176,7 +3176,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Health
+  m_Text: 
 --- !u!222 &1215907232
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3254,7 +3254,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Health
+  m_Text: 
 --- !u!222 &1340240542
 CanvasRenderer:
   m_ObjectHideFlags: 0
