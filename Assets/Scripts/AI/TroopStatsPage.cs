@@ -15,7 +15,8 @@ public class TroopStatsPage : MonoBehaviour
     GameObject UnitAttack;
     [SerializeField]
     GameObject HpNumber;
-
+    [SerializeField]
+    GameObject UnitsTeam;
 
     // Update is called once per frame
     void Update()
@@ -37,12 +38,18 @@ public class TroopStatsPage : MonoBehaviour
                     Player.SelectedUnitList[0].GetComponent<Actual_AI>().health.ToString() + " / " + 
                     Player.SelectedUnitList[0].GetComponent<Actual_AI>().fullHealth.ToString(); ;
 
+                UnitsTeam.SetActive(true);
+                UnitsTeam.GetComponent<Text>().text = "Team: " +
+                    Player.SelectedUnitList[0].GetComponent<Actual_AI>().Teams.ToString();
+
+
                 SliderScript.gameObject.SetActive(true);
                 SliderScript.SetHealth(Player.SelectedUnitList[0].GetComponent<Actual_AI>().fullHealth,
                     Player.SelectedUnitList[0].GetComponent<Actual_AI>().health);
             } else
             {
                 //this is here so the slider will get deactivated if the unit dies
+                UnitsTeam.SetActive(false);
                 SliderScript.gameObject.SetActive(false);
                 UnitAttack.SetActive(false);
                 HpNumber.SetActive(false);
@@ -51,6 +58,7 @@ public class TroopStatsPage : MonoBehaviour
         }
         else 
         {
+            UnitsTeam.SetActive(false);
             SliderScript.gameObject.SetActive(false);
             UnitAttack.SetActive(false);
             HpNumber.SetActive(false);

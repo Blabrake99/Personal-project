@@ -15,7 +15,7 @@ public class Helicopter : MonoBehaviour
     private float _Lookrange = 5;
     private float _fireRate = .2f;
     private float _attackRange = 5f;
-    private int[] unitCost = new int[3];
+    private int[] unitCost = new int[] {20,20,20};
 
     public void Start()
     {
@@ -26,6 +26,7 @@ public class Helicopter : MonoBehaviour
         _Ai.FogLookRange = _Lookrange;
         _Ai.fireRate = _fireRate;
         _Ai.attackRange = _attackRange;
+        _Ai.UnitCost = unitCost;
         //base.setGameOBJ(this.gameObject);
     }
 

@@ -9,7 +9,8 @@ public class Building : MonoBehaviour
 
     public int health = 500;
 
-
+    [SerializeField]
+    Players_Script player;
 
     public GameObject BuildingUI;
     public GameObject BuildingOBJ;
@@ -33,7 +34,7 @@ public class Building : MonoBehaviour
 
     void Update()
     {
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(this.gameObject);
         }
@@ -99,18 +100,22 @@ public class Building : MonoBehaviour
 
         if (temp != null && Spawner != null)
         {
+
             temp.GetComponent<Actual_AI>().GoToArea = Spawner.transform.position;
             temp.GetComponent<Actual_AI>().Selected = true;
 
             temp = null;
+
         }
         if (temp != null && Spawner == null)
         {
+
             temp.GetComponent<Actual_AI>().GoToArea = new Vector3(Random.Range(this.gameObject.transform.position.x - 10, this.gameObject.transform.position.x + 10), transform.position.y + .5f,
                 Random.Range(this.gameObject.transform.position.z - 12, this.gameObject.transform.position.z - 15));
             temp.GetComponent<Actual_AI>().Selected = true;
             temp = null;
         }
+
 
     }
     public void spawn_Unit()
