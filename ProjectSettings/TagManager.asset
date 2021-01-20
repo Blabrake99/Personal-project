@@ -10,6 +10,7 @@ TagManager:
   - Tank
   - BluePrint
   - Building
+  - Tree
   layers:
   - Default
   - TransparentFX
