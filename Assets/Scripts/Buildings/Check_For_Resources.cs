@@ -36,7 +36,7 @@ public class Check_For_Resources : MonoBehaviour
     public enum Resources
     {
         Tree,
-        metal,
+        Rock,
         oil
     }
 }

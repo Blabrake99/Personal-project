@@ -11,6 +11,7 @@ TagManager:
   - BluePrint
   - Building
   - Tree
+  - Rock
   layers:
   - Default
   - TransparentFX

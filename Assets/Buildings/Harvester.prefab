@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4236609938582635091}
   m_Layer: 2
   m_Name: Harvester
-  m_TagString: BluePrint
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,3 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 7
   health: 500
+  resources: 0
