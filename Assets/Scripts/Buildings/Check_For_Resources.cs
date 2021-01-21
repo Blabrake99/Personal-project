@@ -37,6 +37,6 @@ public class Check_For_Resources : MonoBehaviour
     {
         Tree,
         Rock,
-        oil
+        Oil
     }
 }
