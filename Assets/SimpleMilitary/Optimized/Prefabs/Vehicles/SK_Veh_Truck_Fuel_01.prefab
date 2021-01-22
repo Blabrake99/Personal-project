@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 456992}
   - component: {fileID: 3309642}
   - component: {fileID: 2391260}
+  - component: {fileID: -7600270590019458040}
   m_Layer: 0
   m_Name: SK_Veh_Truck_Fuel_01
   m_TagString: Untagged
@@ -322,6 +323,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-7600270590019458040
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 3bb367ee891d3514c8f9413d6a86b87a, type: 3}
 --- !u!1 &179254
 GameObject:
   m_ObjectHideFlags: 0

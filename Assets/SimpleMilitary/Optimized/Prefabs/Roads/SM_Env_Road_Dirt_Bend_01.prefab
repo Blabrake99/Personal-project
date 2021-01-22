@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 405422}
   - component: {fileID: 3353570}
   - component: {fileID: 2345632}
+  - component: {fileID: 470296189338391451}
   m_Layer: 0
   m_Name: SM_Env_Road_Dirt_Bend_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &470296189338391451
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154754}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5ffb3760f2f0b8a46809eff9f9d2d055, type: 3}

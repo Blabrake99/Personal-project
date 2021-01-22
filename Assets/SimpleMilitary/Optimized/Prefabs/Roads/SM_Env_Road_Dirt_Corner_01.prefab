@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 468778}
   - component: {fileID: 3357008}
   - component: {fileID: 2387388}
+  - component: {fileID: 6162749620893116652}
   m_Layer: 0
   m_Name: SM_Env_Road_Dirt_Corner_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6162749620893116652
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179956}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 200a42bc1f47c5743be7fc73fb79fc7e, type: 3}

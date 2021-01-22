@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 455798}
   - component: {fileID: 3365762}
   - component: {fileID: 2319046}
+  - component: {fileID: -4063307775522321002}
   m_Layer: 0
   m_Name: SM_Prop_Tank_Stop_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-4063307775522321002
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: cdfd35386e09de843bea0af9495a7996, type: 3}

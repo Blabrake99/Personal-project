@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 422584}
   - component: {fileID: 3342660}
   - component: {fileID: 2395700}
+  - component: {fileID: 3037497983507824243}
   m_Layer: 0
   m_Name: SK_Wep_SniperRifle_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3037497983507824243
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 988059a703e90724285a3e018c1d34ce, type: 3}

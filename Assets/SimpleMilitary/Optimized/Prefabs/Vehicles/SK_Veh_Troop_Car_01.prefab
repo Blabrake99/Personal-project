@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 473860}
   - component: {fileID: 3360122}
   - component: {fileID: 2351564}
+  - component: {fileID: 7344839701800447472}
   m_Layer: 0
   m_Name: SK_Veh_Troop_Car_01
   m_TagString: Untagged
@@ -84,6 +85,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7344839701800447472
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144606}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: a0fc9755c8d9ec649a6852e5e935ee74, type: 3}
 --- !u!1 &156826
 GameObject:
   m_ObjectHideFlags: 0

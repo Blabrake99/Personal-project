@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 418616}
   - component: {fileID: 3301216}
   - component: {fileID: 2341730}
+  - component: {fileID: 3162909545920585236}
   m_Layer: 0
   m_Name: SK_Wep_MiniGun_01
   m_TagString: Untagged
@@ -80,6 +81,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3162909545920585236
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 47cb51607ff059d4caeba7d03e78b22a, type: 3}
 --- !u!1 &177540
 GameObject:
   m_ObjectHideFlags: 0

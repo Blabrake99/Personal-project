@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 486138}
   - component: {fileID: 3313564}
   - component: {fileID: 2374274}
+  - component: {fileID: -3019103003751976924}
   m_Layer: 0
   m_Name: SM_Env_Road_Asphalt_Dirt_Transition_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-3019103003751976924
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: bdbd0c44b9fca4d4d95d15563417f6be, type: 3}

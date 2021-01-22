@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 486544}
   - component: {fileID: 3308964}
   - component: {fileID: 2384086}
+  - component: {fileID: -1527534183435467246}
   m_Layer: 0
   m_Name: SK_Wep_AK47_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-1527534183435467246
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5fd56ab108b33e841b5546bcd3871ee5, type: 3}

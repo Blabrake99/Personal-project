@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 465544}
   - component: {fileID: 3350684}
   - component: {fileID: 2386964}
+  - component: {fileID: 6651335245381803519}
   m_Layer: 0
   m_Name: SK_Veh_Attack_Heli_01
   m_TagString: Untagged
@@ -486,6 +487,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6651335245381803519
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 3ac7d2734c2d3104498a97d238fe2592, type: 3}
 --- !u!1 &149070
 GameObject:
   m_ObjectHideFlags: 0
