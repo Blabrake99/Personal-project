@@ -88,16 +88,25 @@ public class Players_Script : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
 
-            List<Vector3> targetPosList = GetPositionListAround(new Vector3(worldPosition.x, worldPosition.y, worldPosition.z), 15f, 40);
+            List<Vector3> targetPosList = GetPositionListAround(new Vector3(worldPosition.x, worldPosition.y, worldPosition.z), 5f, SelectedUnitList.Count);
 
             for (int i = 0; i < SelectedUnitList.Count; i++)
             {
                
                 if (SelectedUnitList[i] != null)
                 {
-                    SelectedUnitList[i].GetComponent<Actual_AI>().GoToArea = new Vector3(targetPosList[i].x,
-                        SelectedUnitList[i].GetComponent<Actual_AI>().transform.position.y, targetPosList[i].z);
-                    SelectedUnitList[i].GetComponent<Actual_AI>().Selected = true;
+                    //it'll make formation for the units if there is more than 1 
+                    if (SelectedUnitList.Count > 1)
+                    {
+                        SelectedUnitList[i].GetComponent<Actual_AI>().GoToArea = new Vector3(targetPosList[i].x,
+                            SelectedUnitList[i].GetComponent<Actual_AI>().transform.position.y, targetPosList[i].z);
+                        SelectedUnitList[i].GetComponent<Actual_AI>().Selected = true;
+                    } else
+                    {
+                        SelectedUnitList[i].GetComponent<Actual_AI>().GoToArea = new Vector3(worldPosition.x, worldPosition.y, worldPosition.z);
+                        SelectedUnitList[i].GetComponent<Actual_AI>().Selected = true;
+                    }
+
                 }
             }
         }

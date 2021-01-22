@@ -343,7 +343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnCounter: 0
   Units:
-  - {fileID: 3807024779188550808, guid: 3e10194d4dd80ca41807f700c25f7194, type: 3}
+  - {fileID: 6147647233789027911, guid: 3314bcc85a2391f4fa3bb40c12933fa2, type: 3}
+  recForUnits: 140000001400000014000000
   CostTXT: {fileID: 3955835020170489241}
 --- !u!114 &4368721336462446666
 MonoBehaviour:
