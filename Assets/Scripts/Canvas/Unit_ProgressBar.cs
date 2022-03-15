@@ -13,7 +13,7 @@ public class Unit_ProgressBar : MonoBehaviour
     public void StartTimer(float timeToBuild)
     {
         image = this.GetComponent<Image>();
-        if (IsDone() == true)
+        if (IsDone())
         {
             image.fillAmount = 0;
         }

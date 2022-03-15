@@ -11,6 +11,7 @@ public class IdleState : BaseState
 
     public override Type Tick()
     {
+        _Ai.IsIdle = true;
         float dist = Vector3.Distance(transform.position, _Ai.LastIdlePos);
 
         if (!IsSelected())
@@ -18,7 +19,8 @@ public class IdleState : BaseState
             if (dist >= .1f)
             {
                 _Ai.GoToLastIdlePos();
-            } else
+            }
+            else
             {
                 _Ai.IsIdle = true;
             }

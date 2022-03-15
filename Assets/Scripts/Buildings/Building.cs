@@ -21,7 +21,7 @@ public class Building : MonoBehaviour
     Material Mat;
 
     //for the ProgressBar
-    public Canvas ProgressCanvas;
+    public Unit_ProgressBar ProgressCanvas;
     public GameObject CanvasPrefab;
     GameObject temp;
     bool onlyOnce;
@@ -51,38 +51,39 @@ public class Building : MonoBehaviour
                 }
             }
         }
-        if (InUI == true && Input.GetKey(KeyCode.Escape) ||
+        if (InUI && Input.GetKey(KeyCode.Escape) ||
             Input.GetMouseButton(1))
         {
             InUI = false;
         }
         #region ProgressBar
 
-        if (BuildingOBJ != null)
+        if (BuildingOBJ != null && tempCounter == 0)
         {
             tempCounter = BuildingOBJ.GetComponent<Button_Unit>().spawnCounter;
         }
 
         if (tempCounter > 0)
         {
-            if (onlyOnce == false)
+            if (!onlyOnce)
             {
                 GameObject TempCanvas = Instantiate(CanvasPrefab);
                 GameObject tempobj = TempCanvas;
                 TempCanvas.transform.SetParent(this.gameObject.transform);
-                ProgressCanvas = tempobj.GetComponentInChildren<Canvas>();
+                ProgressCanvas = tempobj.GetComponentInChildren<Canvas>().transform.GetComponentInChildren<Unit_ProgressBar>();
                 TempCanvas.transform.position = this.gameObject.transform.position + new Vector3(0, 7, 0);
                 onlyOnce = true;
             }
 
             if (ProgressCanvas != null)
-                ProgressCanvas.transform.GetComponentInChildren<Unit_ProgressBar>().StartTimer(1.5f);
-            if (ProgressCanvas.transform.GetComponentInChildren<Unit_ProgressBar>().IsDone() == true)
+                ProgressCanvas.StartTimer(1.5f);
+
+            if (ProgressCanvas.IsDone())
             {
                 spawn_Unit();
                 if (tempCounter > 0)
                 {
-                    ProgressCanvas.transform.GetComponentInChildren<Unit_ProgressBar>().ResetProgressBar();
+                    ProgressCanvas.ResetProgressBar();
                 }
 
             }
@@ -124,14 +125,11 @@ public class Building : MonoBehaviour
         {
             BuildingOBJ.GetComponent<Button_Unit>().spawnCounter -= 1;
         }
-        else
-        {
-            tempCounter -= 1;
-        }
 
         temp = Instantiate(Unit[0], this.gameObject.transform.position - new Vector3(0, -.5f, this.gameObject.transform.localScale.z), Quaternion.identity);
         temp.GetComponent<Actual_AI>().SetTeam(GameObject.Find("PlayerOBJ").GetComponent<Players_Script>().Teams.ToString());
         Unit.Remove(Unit[0]);
+        tempCounter = Unit.Count;
     }
     public void DestroySpawnPoint()
     {

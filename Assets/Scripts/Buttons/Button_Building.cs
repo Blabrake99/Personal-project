@@ -8,7 +8,10 @@ public class Button_Building : MonoBehaviour
 
     public void spawn_Base_blueprint()
     {
-       Instantiate(Base_blueprint);
+        if (!GameObject.FindGameObjectWithTag("BluePrint"))
+            Instantiate(Base_blueprint);
+        else
+            Destroy(GameObject.FindGameObjectWithTag("BluePrint"));
     }
     
 }

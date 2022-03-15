@@ -13,7 +13,7 @@ public class MoveToState : BaseState
     }
     public override Type Tick()
     {
-        if(_Ai.GoToArea == null)
+        if (_Ai.GoToArea == Vector3.zero)
             return typeof(IdleState);
 
         transform.LookAt(_Ai.GoToArea);
@@ -21,25 +21,23 @@ public class MoveToState : BaseState
 
         var distance = Vector3.Distance(transform.position, _Ai.GoToArea);
 
-
         if (distance <= .3f)
         {
             _Ai.Selected = false;
+            _Ai.GoToArea = Vector3.zero;
             return typeof(IdleState);
         }
         if (IsSelected())
         {
             return typeof(MoveToState);
         }
+
         return null;
     }
 
-
-  
-
     private bool IsSelected()
     {
-        if (_Ai.Selected == true)
+        if (_Ai.Selected)
         {
             return true;
         }

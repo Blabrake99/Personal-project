@@ -58,23 +58,23 @@ public class Players_Script : MonoBehaviour
             isSelecting = true;
             mousePosition1 = Input.mousePosition;
 
-            if (SelectedUnitList.Count > 0)
-            {
-                for (int i = 0; i < SelectedUnitList.Count; i++)
-                {
+            //if (SelectedUnitList.Count > 0)
+            //{
+            //    for (int i = 0; i < SelectedUnitList.Count; i++)
+            //    {
 
-                    if (SelectedUnitList[i] != null && team.ToString() == SelectedUnitList[i].GetComponent<Actual_AI>().Teams.ToString())
-                    {
+            //        if (SelectedUnitList[i] != null && team.ToString() == SelectedUnitList[i].GetComponent<Actual_AI>().Teams.ToString())
+            //        {
 
-                        if (SelectedUnitList[i].GetComponent<Actual_AI>().Selected == true)
-                        {
-                            //SelectedUnitList[i].GetComponent<Actual_AI>().Selected = false;
-                        }
+            //            if (SelectedUnitList[i].GetComponent<Actual_AI>().Selected)
+            //            {
+            //                //SelectedUnitList[i].GetComponent<Actual_AI>().Selected = false;
+            //            }
                         
-                    }
-                }
+            //        }
+            //    }
 
-            }
+            //}
 
             SelectedUnitList.Clear();
         }
@@ -116,7 +116,7 @@ public class Players_Script : MonoBehaviour
             {
                 if (S != null)
                 {
-                    if (S.GetComponent<Actual_AI>().Selected == true)
+                    if (S.GetComponent<Actual_AI>().Selected)
                         S.GetComponent<Actual_AI>().Selected = false;
                 }
             }
@@ -125,7 +125,7 @@ public class Players_Script : MonoBehaviour
         {
             if (G != null)
             {
-                if (IsWithinSelectionBounds(G) == true && team.ToString() == G.GetComponent<Actual_AI>().Teams.ToString())
+                if (IsWithinSelectionBounds(G) && team.ToString() == G.GetComponent<Actual_AI>().Teams.ToString())
                 {
                     if (!SelectedUnitList.Contains(G))
                     {

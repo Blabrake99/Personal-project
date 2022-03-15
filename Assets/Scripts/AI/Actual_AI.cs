@@ -111,7 +111,6 @@ public class Actual_AI : MonoBehaviour
 
     protected void Update()
     {
-
         if(fullHealth == 0)
             fullHealth = health;
 
@@ -131,7 +130,7 @@ public class Actual_AI : MonoBehaviour
                 }
             }
         }
-        if (IsIdle == true)
+        if (IsIdle)
         {
             LastIdlePos = this.transform.position;
         }

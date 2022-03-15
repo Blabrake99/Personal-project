@@ -17,7 +17,7 @@ public class BuildingCanvas : MonoBehaviour
     void Update()
     {
         bases = GameObject.FindObjectsOfType(typeof(Building)) as Building[];
-        if (currentSpawner != false)
+        if (currentSpawner != null)
         {
             if (currentSpawner.GetComponent<Spawner>().curState == Spawner.SpawnerStates.unlocked)
             {
@@ -28,7 +28,7 @@ public class BuildingCanvas : MonoBehaviour
             {
                 //this is here so when you place a spawner somewhere
                 //if doesn't close out of the building window 
-                if(onlyOnce == false)
+                if(!onlyOnce)
                 {
                     quicktimer = .5f;
                     onlyOnce = true;
@@ -42,7 +42,7 @@ public class BuildingCanvas : MonoBehaviour
             {
                 if (bases[i] != null)
                 {
-                    if (bases[i].InUI == true)
+                    if (bases[i].InUI)
                     {
                         CurrentBase = bases[i].gameObject;
                         if (CurrentBase.GetComponent<Building>().Spawner == null)
@@ -95,14 +95,12 @@ public class BuildingCanvas : MonoBehaviour
         
         if (Input.GetMouseButton(0) && panel.activeSelf &&
             !RectTransformUtility.RectangleContainsScreenPoint(
-                panel.GetComponent<RectTransform>(),
-                Input.mousePosition,
-                Camera.main) && movingSpawner == false
-                || Input.GetKey(KeyCode.Escape) && movingSpawner == false)
+                panel.GetComponent<RectTransform>(), Input.mousePosition,
+                Camera.main) && !movingSpawner || Input.GetKey(KeyCode.Escape) && !movingSpawner)
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
-            if (gameObject.activeSelf == true)
+            if (gameObject.activeSelf)
             {
 
                 Destroy(this.gameObject);
