@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2226965389819164157}
   m_Layer: 0
   m_Name: Red_Base
-  m_TagString: BluePrint
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &61206544946403241
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -126,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   health: 500
+  player: {fileID: 0}
   BuildingUI: {fileID: 1046855542000531618, guid: 4ae216ac3d9614d4ba421d2303594f87,
     type: 3}
   BuildingOBJ: {fileID: 0}

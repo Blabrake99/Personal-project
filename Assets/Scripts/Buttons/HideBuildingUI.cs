@@ -8,7 +8,7 @@ public class HideBuildingUI : MonoBehaviour
 
     public void OnButtonPress()
     {
-        if(SetActive == false)
+        if(!SetActive)
         {
             BuildingCanvas.SetActive(true);
             this.GetComponentInChildren<Text>().text = "Hide Building Menu";

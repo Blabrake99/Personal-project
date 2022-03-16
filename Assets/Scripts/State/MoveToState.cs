@@ -46,7 +46,7 @@ public class MoveToState : BaseState
         //var direction = angle * Vector3.forward;
         //for (var i = 0; i < 20; i++)
         //{//Raycast(pos, direction, out hit, _Ai.FogLookRange)
-        if (Physics.SphereCast(transform.position, 1f, transform.forward, out hit))
+        if (Physics.SphereCast(transform.position, .5f, transform.forward, out hit))
         {
             var ai = hit.collider.GetComponent<Actual_AI>();
             var building = hit.collider.GetComponent<Building>();
