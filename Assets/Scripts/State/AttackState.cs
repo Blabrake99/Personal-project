@@ -16,7 +16,7 @@ public class AttackState : BaseState
     {
         if (_Ai.Target == null)
             return typeof(IdleState);
-
+        //_Ai.IsIdle = false;
         attackTimer -= Time.deltaTime;
 
         if(attackTimer <= 0f)

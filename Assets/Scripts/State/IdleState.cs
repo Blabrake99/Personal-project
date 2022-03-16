@@ -28,10 +28,13 @@ public class IdleState : BaseState
         var chaseTarget = CheckForAggro();
 
         //here we set the chase target then set the state to chase state
-        if (chaseTarget != null)
+        if (chaseTarget != null || _Ai.Target != null)
         {
             _Ai.IsIdle = false;
-            _Ai.SetTarget(chaseTarget);
+
+            if(_Ai.Target == null)
+                _Ai.SetTarget(chaseTarget);
+
             return typeof(ChaseState);
         }
 
@@ -41,51 +44,50 @@ public class IdleState : BaseState
         }
         return null;
     }
-    Quaternion startingAngle = Quaternion.AngleAxis(-70, Vector3.up);
-    Quaternion stepAngle = Quaternion.AngleAxis(15, Vector3.up);
+    //Quaternion startingAngle = Quaternion.AngleAxis(-70, Vector3.up);
+    //Quaternion stepAngle = Quaternion.AngleAxis(15, Vector3.up);
     private Transform CheckForAggro()
     {
         RaycastHit hit;
-        var angle = transform.rotation * startingAngle;
-        var direction = angle * Vector3.forward;
-        var pos = transform.position + new Vector3(0,1f,0);
+        //var angle = transform.rotation * startingAngle;
+        //var direction = angle * Vector3.forward;
         //for (var i = 0; i < 20; i++)
-        //{
-            if (Physics.Raycast(pos, direction, out hit, _Ai.FogLookRange))
+        //{//Raycast(pos, direction, out hit, _Ai.FogLookRange)
+        if (Physics.SphereCast(transform.position, 1, transform.forward, out hit))
+        {
+            var ai = hit.collider.GetComponent<Actual_AI>();
+            var building = hit.collider.GetComponent<Building>();
+            var Turret = hit.collider.GetComponent<Turret>();
+            if (ai != null && ai.Teams != gameobj.GetComponent<Actual_AI>().Teams)
             {
-                var ai = hit.collider.GetComponent<Actual_AI>();
-                var building = hit.collider.GetComponent<Building>();
-                var Turret = hit.collider.GetComponent<Turret>();
-                if (ai != null && ai.Teams != gameobj.GetComponent<Actual_AI>().Teams)
-                {
-                    return ai.transform;
-                }
-                //else
-                //{
-                //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
-                //}
-                if (building != null && building.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
-                {
-                    return building.transform;
-                }
-                //else
-                //{
-                //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
-                //}
-                if (Turret != null && Turret.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
-                {
-                    return Turret.transform;
-                }
-                //else
-                //{
-                //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
-                //}
+                return ai.transform;
+            }
+            //else
+            //{
+            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
+            //}
+            if (building != null && building.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
+            {
+                return building.transform;
+            }
+            //else
+            //{
+            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
+            //}
+            if (Turret != null && Turret.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
+            {
+                return Turret.transform;
+            }
+            //else
+            //{
+            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
+            //}
             //}
             //else
             //{
             //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.white);
             //}
-            direction = stepAngle * direction;
+            //direction = stepAngle * direction;
         }
         return null;
     }

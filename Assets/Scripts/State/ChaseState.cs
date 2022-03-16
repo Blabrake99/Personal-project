@@ -24,7 +24,8 @@ public class ChaseState : BaseState
 
         var distance = Vector3.Distance(transform.position, _Ai.Target.transform.position);
         
-        if (distance <= GameSettings.AttackRange || _Ai.Target.gameObject.tag == "Building")
+        if (distance <= GameSettings.AttackRange && _Ai.Target.gameObject.tag != "Building" || 
+            distance + 2 <= GameSettings.AttackRange && _Ai.Target.gameObject.tag == "Building")
         {
             return typeof(AttackState);
         }

@@ -24,25 +24,75 @@ public class MoveToState : BaseState
         {
             _Ai.Selected = false;
             _Ai.GoToArea = Vector3.zero;
-            return typeof(IdleState);
+            if(!CheckForAggro())
+                return typeof(IdleState);
+            else
+            {
+                _Ai.SetTarget(CheckForAggro());
+                return typeof(ChaseState);
+            }
         }
-        if (IsSelected())
-        {
-            return typeof(MoveToState);
-        }
+        //if (IsSelected())
+        //{
+        //    return typeof(MoveToState);
+        //}
 
         return null;
     }
-
-    private bool IsSelected()
+    private Transform CheckForAggro()
     {
-        if (_Ai.Selected)
+        RaycastHit hit;
+        //var angle = transform.rotation * startingAngle;
+        //var direction = angle * Vector3.forward;
+        //for (var i = 0; i < 20; i++)
+        //{//Raycast(pos, direction, out hit, _Ai.FogLookRange)
+        if (Physics.SphereCast(transform.position, 1f, transform.forward, out hit))
         {
-            return true;
+            var ai = hit.collider.GetComponent<Actual_AI>();
+            var building = hit.collider.GetComponent<Building>();
+            var Turret = hit.collider.GetComponent<Turret>();
+            if (ai != null && ai.Teams != gameobj.GetComponent<Actual_AI>().Teams)
+            {
+                return ai.transform;
+            }
+            //else
+            //{
+            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
+            //}
+            if (building != null && building.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
+            {
+                return building.transform;
+            }
+            //else
+            //{
+            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
+            //}
+            if (Turret != null && Turret.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
+            {
+                return Turret.transform;
+            }
+            //else
+            //{
+            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
+            //}
+            //}
+            //else
+            //{
+            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.white);
+            //}
+            //direction = stepAngle * direction;
         }
-        else
-        {
-            return false;
-        }
+        return null;
     }
+    //private bool IsSelected()
+    //{
+    //    if (_Ai.Selected)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 }
