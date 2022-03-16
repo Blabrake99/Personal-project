@@ -48,9 +48,9 @@ public class IdleState : BaseState
         RaycastHit hit;
         var angle = transform.rotation * startingAngle;
         var direction = angle * Vector3.forward;
-        var pos = transform.position;
-        for (var i = 0; i < 20; i++)
-        {
+        var pos = transform.position + new Vector3(0,1f,0);
+        //for (var i = 0; i < 20; i++)
+        //{
             if (Physics.Raycast(pos, direction, out hit, _Ai.FogLookRange))
             {
                 var ai = hit.collider.GetComponent<Actual_AI>();
@@ -60,31 +60,31 @@ public class IdleState : BaseState
                 {
                     return ai.transform;
                 }
-                else
-                {
-                    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
-                }
+                //else
+                //{
+                //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
+                //}
                 if (building != null && building.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
                 {
                     return building.transform;
                 }
-                else
-                {
-                    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
-                }
+                //else
+                //{
+                //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
+                //}
                 if (Turret != null && Turret.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
                 {
                     return Turret.transform;
                 }
-                else
-                {
-                    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
-                }
-            }
-            else
-            {
-                Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.white);
-            }
+                //else
+                //{
+                //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
+                //}
+            //}
+            //else
+            //{
+            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.white);
+            //}
             direction = stepAngle * direction;
         }
         return null;
@@ -93,7 +93,7 @@ public class IdleState : BaseState
 
     private bool IsSelected()
     {
-        if (_Ai.Selected == true)
+        if (_Ai.Selected)
         {
             return true;
         }

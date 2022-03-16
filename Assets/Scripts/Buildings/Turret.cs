@@ -18,7 +18,10 @@ public class Turret : MonoBehaviour
     private int _attackDamage = 20;
     private float _fireRate = .2f;
     public float _attackRange = 10;
-
+    void Awake()
+    {
+        SetTeam(GameObject.Find("PlayerOBJ").GetComponent<Players_Script>().Teams.ToString());
+    }
     void Update()
     {
         var target = CheckForAggro();
@@ -135,7 +138,10 @@ public class Turret : MonoBehaviour
         }
         return null;
     }
-
+    public void SetTeam(System.String t)
+    {
+        team = (Team)System.Enum.Parse(typeof(Team), t);
+    }
     public enum Team
     {
         blue,

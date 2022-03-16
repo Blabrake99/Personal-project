@@ -20,7 +20,6 @@ public class MoveToState : BaseState
         transform.Translate(Vector3.forward * Time.deltaTime * GameSettings.Speed);
 
         var distance = Vector3.Distance(transform.position, _Ai.GoToArea);
-
         if (distance <= .3f)
         {
             _Ai.Selected = false;

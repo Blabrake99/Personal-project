@@ -77,8 +77,6 @@ public class Actual_AI : MonoBehaviour
 
     public void Fire()
     {
-
-
         if (Target != null)
         {
             if (Target.GetComponent<Actual_AI>() != null)
@@ -138,6 +136,11 @@ public class Actual_AI : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+    //this is for debugging the states
+    public void PrintState(string state)
+    {
+        print(state);
     }
     //get unit type and get unit type from the target 
     // 

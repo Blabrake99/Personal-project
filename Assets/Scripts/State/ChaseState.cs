@@ -37,7 +37,7 @@ public class ChaseState : BaseState
 
     private bool IsSelected()
     {
-        if (_Ai.Selected == true)
+        if (_Ai.Selected)
         {
             return true;
         }
