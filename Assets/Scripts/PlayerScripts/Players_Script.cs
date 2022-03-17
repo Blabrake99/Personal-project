@@ -20,7 +20,7 @@ public class Players_Script : MonoBehaviour
 
     public int[] resources = new int[3];
 
-    Vector3 mouseStartPos;
+    Vector3 startingMousePos;
     void Awake()
     {
         //wood
@@ -43,8 +43,6 @@ public class Players_Script : MonoBehaviour
         UnitArr = GameObject.FindGameObjectsWithTag("Unit");
         Plane plane = new Plane(Vector3.up, 0);
 
-
-
         float distance;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (plane.Raycast(ray, out distance))
@@ -54,36 +52,24 @@ public class Players_Script : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-
+            startingMousePos = Input.mousePosition;
             isSelecting = true;
             mousePosition1 = Input.mousePosition;
 
-            //if (SelectedUnitList.Count > 0)
-            //{
-            //    for (int i = 0; i < SelectedUnitList.Count; i++)
-            //    {
-
-            //        if (SelectedUnitList[i] != null && team.ToString() == SelectedUnitList[i].GetComponent<Actual_AI>().Teams.ToString())
-            //        {
-
-            //            if (SelectedUnitList[i].GetComponent<Actual_AI>().Selected)
-            //            {
-            //                //SelectedUnitList[i].GetComponent<Actual_AI>().Selected = false;
-            //            }
-                        
-            //        }
-            //    }
-
-            //}
-
             SelectedUnitList.Clear();
+            Ray rays = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.GetComponent<Actual_AI>() != null)
+                    if (team.ToString() == hit.transform.gameObject.GetComponent<Actual_AI>().Teams.ToString())
+                        SelectedUnitList.Add(hit.transform.gameObject);
+            }
         }
         // If we let go of the left mouse button, end selection
         if (Input.GetMouseButtonUp(0))
         {
-
             isSelecting = false;
-
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -121,27 +107,29 @@ public class Players_Script : MonoBehaviour
                 }
             }
         }
-        foreach (GameObject G in UnitArr)
+        if (isSelecting)
         {
-            if (G != null)
+            foreach (GameObject G in UnitArr)
             {
-                if (IsWithinSelectionBounds(G) && team.ToString() == G.GetComponent<Actual_AI>().Teams.ToString())
+                if (G != null)
                 {
-                    if (!SelectedUnitList.Contains(G))
+                    if (IsWithinSelectionBounds(G) && team.ToString() == G.GetComponent<Actual_AI>().Teams.ToString())
                     {
-                        SelectedUnitList.Add(G);
+                        if (!SelectedUnitList.Contains(G))
+                        {
+                            SelectedUnitList.Add(G);
+                        }
                     }
-                }
-                else
-                {
-                    if(SelectedUnitList.Contains(G))
+                    else
                     {
-                        SelectedUnitList.Remove(G);
+                        if (SelectedUnitList.Contains(G) && startingMousePos != Input.mousePosition && Vector3.Distance(startingMousePos, Input.mousePosition) > 50)
+                        {
+                            SelectedUnitList.Remove(G);
+                        }
                     }
                 }
             }
         }
-
     }
     private List<Vector3> GetPositionListAround(Vector3 startpos, float dist, int posCount)
     {
