@@ -29,7 +29,8 @@ public class Building : MonoBehaviour
 
     void Awake()
     {
-        SetTeam(GameObject.Find("PlayerOBJ").GetComponent<Players_Script>().Teams.ToString());
+        player = GameObject.Find("PlayerOBJ").GetComponent<Players_Script>();
+        SetTeam(player.Teams.ToString());
     }
 
     void Update()
@@ -44,7 +45,7 @@ public class Building : MonoBehaviour
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
             if (hit)
             {
-                if (hitInfo.transform.gameObject == this.gameObject)
+                if (hitInfo.transform.gameObject == this.gameObject && Teams.ToString() == player.Teams.ToString())
                 {
                     InUI = true;
                     BuildingOBJ = Instantiate(BuildingUI);
@@ -127,7 +128,7 @@ public class Building : MonoBehaviour
         }
 
         temp = Instantiate(Unit[0], this.gameObject.transform.position - new Vector3(0, -.5f, this.gameObject.transform.localScale.z), Quaternion.identity);
-        temp.GetComponent<Actual_AI>().SetTeam(GameObject.Find("PlayerOBJ").GetComponent<Players_Script>().Teams.ToString());
+        temp.GetComponent<Actual_AI>().SetTeam(Teams.ToString());
         Unit.Remove(Unit[0]);
         tempCounter = Unit.Count;
     }
