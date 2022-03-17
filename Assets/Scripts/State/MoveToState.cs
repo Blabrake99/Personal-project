@@ -32,6 +32,26 @@ public class MoveToState : BaseState
                 return typeof(ChaseState);
             }
         }
+        if (CheckForAggro())
+        {
+            _Ai.SetTarget(CheckForAggro());
+            if (_Ai.Target != null)
+            {
+                var distanceToTarget = Vector3.Distance(transform.position, _Ai.Target.transform.position);
+
+                if (distanceToTarget <= GameSettings.AttackRange && _Ai.Target.gameObject.tag != "Building" ||
+                    distanceToTarget + 2 <= GameSettings.AttackRange && _Ai.Target.gameObject.tag == "Building")
+                {
+                    attackTimer -= Time.deltaTime;
+
+                    if (attackTimer <= 0f)
+                    {
+                        _Ai.Fire();
+                        attackTimer = _Ai.fireRate;
+                    }
+                }
+            }
+        }
         //if (IsSelected())
         //{
         //    return typeof(MoveToState);
@@ -46,7 +66,7 @@ public class MoveToState : BaseState
         //var direction = angle * Vector3.forward;
         //for (var i = 0; i < 20; i++)
         //{//Raycast(pos, direction, out hit, _Ai.FogLookRange)
-        if (Physics.SphereCast(transform.position, .5f, transform.forward, out hit))
+        if (Physics.SphereCast(transform.position, .6f, transform.forward, out hit))
         {
             var ai = hit.collider.GetComponent<Actual_AI>();
             var building = hit.collider.GetComponent<Building>();

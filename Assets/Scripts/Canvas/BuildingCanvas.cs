@@ -9,8 +9,6 @@ public class BuildingCanvas : MonoBehaviour
     public Building CurrentBase;
     public GameObject currentSpawner;
 
-    bool clicked;
-    float timer = .1f;
     float quicktimer = .5f;
     public bool movingSpawner;
     bool onlyOnce;
@@ -56,7 +54,7 @@ public class BuildingCanvas : MonoBehaviour
         if (CurrentBase != null && currentSpawner == null)
         {
             currentSpawner = CurrentBase.Spawner;
-            if (currentSpawner != null && CurrentBase.Spawner != null)
+            if (currentSpawner != null)
             {
                 currentSpawner.SetActive(true);
             }
