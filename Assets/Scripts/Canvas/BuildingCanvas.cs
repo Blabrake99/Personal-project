@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BuildingCanvas : MonoBehaviour
 {
     public Building[] bases;
-    public GameObject CurrentBase;
+    public Building CurrentBase;
     public GameObject currentSpawner;
 
     bool clicked;
@@ -44,10 +44,10 @@ public class BuildingCanvas : MonoBehaviour
                 {
                     if (bases[i].InUI)
                     {
-                        CurrentBase = bases[i].gameObject;
-                        if (CurrentBase.GetComponent<Building>().Spawner == null)
+                        CurrentBase = bases[i];
+                        if (CurrentBase.Spawner == null)
                         {
-                            CurrentBase.GetComponent<Building>().Spawner = currentSpawner;
+                            CurrentBase.Spawner = currentSpawner;
                         }
                     }
                 }
@@ -55,17 +55,17 @@ public class BuildingCanvas : MonoBehaviour
         }
         if (CurrentBase != null && currentSpawner == null)
         {
-            currentSpawner = CurrentBase.GetComponent<Building>().Spawner;
-            if (currentSpawner != null && CurrentBase.GetComponent<Building>().Spawner != null)
+            currentSpawner = CurrentBase.Spawner;
+            if (currentSpawner != null && CurrentBase.Spawner != null)
             {
                 currentSpawner.SetActive(true);
             }
         }
         if (CurrentBase != null)
         {
-            if (CurrentBase.GetComponent<Building>().Spawner == null && currentSpawner != null)
+            if (CurrentBase.Spawner == null && currentSpawner != null)
             {
-                CurrentBase.GetComponent<Building>().Spawner = currentSpawner;
+                CurrentBase.Spawner = currentSpawner;
             }
         }
         if (quicktimer <= 0)
@@ -82,11 +82,14 @@ public class BuildingCanvas : MonoBehaviour
     }
     public void DestroyBaseClick()
     {
-        CurrentBase.GetComponent<Building>().DestroySpawnPoint();
-        Destroy(CurrentBase);
+        CurrentBase.DestroySpawnPoint();
+        Destroy(CurrentBase.gameObject);
 
     }
-
+    public void DestroySpawnPoint()
+    {
+        CurrentBase.DestroySpawnPoint();
+    }
     //this will detect if you click off the canvas or just want to
     //leave the canvas in general
 
@@ -96,13 +99,16 @@ public class BuildingCanvas : MonoBehaviour
         if (Input.GetMouseButton(0) && panel.activeSelf &&
             !RectTransformUtility.RectangleContainsScreenPoint(
                 panel.GetComponent<RectTransform>(), Input.mousePosition,
-                Camera.main) && !movingSpawner || Input.GetKey(KeyCode.Escape) && !movingSpawner)
+                Camera.main) && !movingSpawner || Input.GetKey(KeyCode.Escape)  || Input.GetMouseButton(1))
         {
+            if (movingSpawner)
+                CurrentBase.DestroySpawnPoint();
+
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
             if (gameObject.activeSelf)
             {
-
+                CurrentBase.hideBuildingUI.gameObject.SetActive(true);
                 Destroy(this.gameObject);
                 if (currentSpawner != null)
                 {

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 public class HideBuildingUI : MonoBehaviour
 {
     public GameObject BuildingCanvas;
-    private bool SetActive = true;
+    public bool SetActive = true;
 
 
     public void OnButtonPress()

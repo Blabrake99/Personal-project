@@ -26,9 +26,12 @@ public class Building : MonoBehaviour
     GameObject temp;
     bool onlyOnce;
     int tempCounter;
-
+    
+    [HideInInspector]
+    public HideBuildingUI hideBuildingUI;
     void Awake()
     {
+        hideBuildingUI = FindObjectOfType<HideBuildingUI>();
         player = GameObject.Find("PlayerOBJ").GetComponent<Players_Script>();
         SetTeam(player.Teams.ToString());
     }
@@ -47,6 +50,10 @@ public class Building : MonoBehaviour
             {
                 if (hitInfo.transform.gameObject == this.gameObject && Teams.ToString() == player.Teams.ToString())
                 {
+                    if (hideBuildingUI.SetActive)
+                        hideBuildingUI.OnButtonPress();
+
+                    hideBuildingUI.gameObject.SetActive(false);
                     InUI = true;
                     BuildingOBJ = Instantiate(BuildingUI);
                 }
@@ -55,6 +62,7 @@ public class Building : MonoBehaviour
         if (InUI && Input.GetKey(KeyCode.Escape) ||
             Input.GetMouseButton(1))
         {
+            hideBuildingUI.gameObject.SetActive(true);
             InUI = false;
         }
         #region ProgressBar
