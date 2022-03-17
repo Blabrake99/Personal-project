@@ -20,7 +20,7 @@ public class Players_Script : MonoBehaviour
 
     public int[] resources = new int[3];
 
-
+    Vector3 mouseStartPos;
     void Awake()
     {
         //wood
@@ -130,6 +130,13 @@ public class Players_Script : MonoBehaviour
                     if (!SelectedUnitList.Contains(G))
                     {
                         SelectedUnitList.Add(G);
+                    }
+                }
+                else
+                {
+                    if(SelectedUnitList.Contains(G))
+                    {
+                        SelectedUnitList.Remove(G);
                     }
                 }
             }

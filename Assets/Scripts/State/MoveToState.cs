@@ -32,6 +32,7 @@ public class MoveToState : BaseState
                 return typeof(ChaseState);
             }
         }
+        //run and gun
         if (CheckForAggro())
         {
             _Ai.SetTarget(CheckForAggro());
