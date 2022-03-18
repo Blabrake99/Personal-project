@@ -7,12 +7,11 @@ public class Tank : MonoBehaviour
 {
     private Actual_AI _Ai;
 
-    private int _health = 100;
+    private int _health = 200;
     private float _speed = 3;
-    private float _buildSpeed = 3;
-    private int _attackDamage = 20;
+    private int _attackDamage = 50;
     private float _Lookrange = 5;
-    private float _fireRate = .2f;
+    private float _fireRate = .4f;
     private float _attackRange = 5f;
 
     //static UnitStats unitStats = unitStats.init(200,2,2,10,5,2,3);
@@ -28,7 +27,6 @@ public class Tank : MonoBehaviour
         _Ai = this.gameObject.GetComponent<Actual_AI>();
         _Ai.health = _health;
         _Ai.attackDamage = _attackDamage;
-        _Ai.buildSpeed = _buildSpeed;
         _Ai.FogLookRange = _Lookrange;
         _Ai.fireRate = _fireRate;
         _Ai.attackRange = _attackRange;

@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullHealth: 0
   health: 0
-  buildSpeed: 0
+  buildSpeed: 1.5
   attackDamage: 0
   FogLookRange: 0
   fireRate: 0

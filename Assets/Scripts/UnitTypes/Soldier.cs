@@ -7,7 +7,6 @@ public class Soldier : MonoBehaviour
     private Actual_AI _Ai;
     private int _health =100;
     private float _speed = 3;
-    private float _buildSpeed = 3;
     private int _attackDamage = 20;
     private float _Lookrange = 5;
     private float _fireRate = .2f;
@@ -30,7 +29,6 @@ public class Soldier : MonoBehaviour
         _Ai = this.gameObject.GetComponent<Actual_AI>();
         _Ai.health = _health;
         _Ai.attackDamage = _attackDamage;
-        _Ai.buildSpeed = _buildSpeed;
         _Ai.FogLookRange = _Lookrange;
         _Ai.fireRate = _fireRate;
         _Ai.attackRange = _attackRange;

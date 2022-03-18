@@ -85,7 +85,7 @@ public class Building : MonoBehaviour
             }
 
             if (ProgressCanvas != null)
-                ProgressCanvas.StartTimer(1.5f);
+                ProgressCanvas.StartTimer(Unit[0].GetComponent<Actual_AI>().buildSpeed);
 
             if (ProgressCanvas.IsDone())
             {
