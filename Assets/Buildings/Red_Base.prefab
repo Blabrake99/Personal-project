@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2226965389819164157}
   m_Layer: 0
   m_Name: Red_Base
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,3 +139,4 @@ MonoBehaviour:
   ProgressCanvas: {fileID: 0}
   CanvasPrefab: {fileID: 7500001900185155517, guid: a52d868c61911774e9b595e23b4cd272,
     type: 3}
+  hideBuildingUI: {fileID: 0}

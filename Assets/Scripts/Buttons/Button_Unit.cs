@@ -24,9 +24,9 @@ public class Button_Unit : MonoBehaviour
         if (PS.resources[0] >= spawnData[SpawnIndex].costs[0] && PS.resources[1] >= spawnData[SpawnIndex].costs[1]
                 && PS.resources[2] >= spawnData[SpawnIndex].costs[2])
         {
-            PS.resources[0] -= spawnData[SpawnIndex].costs[1];
+            PS.resources[0] -= spawnData[SpawnIndex].costs[0];
             PS.resources[1] -= spawnData[SpawnIndex].costs[1];
-            PS.resources[2] -= spawnData[SpawnIndex].costs[1];
+            PS.resources[2] -= spawnData[SpawnIndex].costs[2];
             this.gameObject.GetComponent<BuildingCanvas>().CurrentBase.GetComponent<Building>().Unit.Add(spawnData[SpawnIndex].unit);
             spawnCounter += 1;
         }

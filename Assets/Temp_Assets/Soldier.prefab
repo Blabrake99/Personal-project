@@ -2538,6 +2538,9 @@ MonoBehaviour:
   FogLookRange: 0
   fireRate: 0
   attackRange: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
   team: 7
   CircleUnderTroop: {fileID: 6147647232830972255}
   unit: 1

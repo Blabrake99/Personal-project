@@ -13,7 +13,7 @@ public class Actual_AI : MonoBehaviour
     public float FogLookRange;
     public float fireRate;
     public float attackRange;
-
+    public float chaseRange;
     #endregion
 
     [SerializeField]

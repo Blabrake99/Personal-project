@@ -14,7 +14,7 @@ public class BuildingCanvas : MonoBehaviour
     bool onlyOnce;
     void Update()
     {
-        bases = GameObject.FindObjectsOfType(typeof(Building)) as Building[];
+        //bases = GameObject.FindObjectsOfType(typeof(Building)) as Building[];
         if (currentSpawner != null)
         {
             if (currentSpawner.GetComponent<Spawner>().curState == Spawner.SpawnerStates.unlocked)
@@ -36,20 +36,8 @@ public class BuildingCanvas : MonoBehaviour
         }
         if (CurrentBase == null)
         {
-            for (int i = 0; i < bases.Length; i++)
-            {
-                if (bases[i] != null)
-                {
-                    if (bases[i].InUI)
-                    {
-                        CurrentBase = bases[i];
-                        if (CurrentBase.Spawner == null)
-                        {
-                            CurrentBase.Spawner = currentSpawner;
-                        }
-                    }
-                }
-            }
+            CurrentBase.hideBuildingUI.gameObject.SetActive(true);
+            Destroy(this.gameObject);
         }
         if (CurrentBase != null && currentSpawner == null)
         {

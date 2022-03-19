@@ -56,6 +56,7 @@ public class Building : MonoBehaviour
                     hideBuildingUI.gameObject.SetActive(false);
                     InUI = true;
                     BuildingOBJ = Instantiate(BuildingUI);
+                    BuildingOBJ.GetComponent<BuildingCanvas>().CurrentBase = this;
                 }
             }
         }

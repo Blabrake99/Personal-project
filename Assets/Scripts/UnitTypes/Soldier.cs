@@ -8,10 +8,10 @@ public class Soldier : MonoBehaviour
     private int _health =100;
     private float _speed = 3;
     private int _attackDamage = 20;
-    private float _Lookrange = 5;
+    private float _fogRange = 5;
     private float _fireRate = .2f;
     private float _attackRange = 5f;
-
+    private float _chaserange = 6f;
     //private Soldier(Actual_AI ai, int health, float speed, float buildSpeed, int attackDamage,
     //    float Lookrange, float fireRate, float attackRange) : base(ai.gameObject, 100,3,3,20,5,.2f,5)
     //{
@@ -29,10 +29,10 @@ public class Soldier : MonoBehaviour
         _Ai = this.gameObject.GetComponent<Actual_AI>();
         _Ai.health = _health;
         _Ai.attackDamage = _attackDamage;
-        _Ai.FogLookRange = _Lookrange;
+        _Ai.FogLookRange = _fogRange;
         _Ai.fireRate = _fireRate;
         _Ai.attackRange = _attackRange;
-
+        _Ai.chaseRange = _chaserange;
         //base.setGameOBJ(this.gameObject);
     }
     

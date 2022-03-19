@@ -12,8 +12,8 @@ public class Tank : MonoBehaviour
     private int _attackDamage = 50;
     private float _Lookrange = 5;
     private float _fireRate = .4f;
-    private float _attackRange = 5f;
-
+    private float _attackRange = 6f;
+    private float _chaserange = 7f;
     //static UnitStats unitStats = unitStats.init(200,2,2,10,5,2,3);
 
     //private Tank(Actual_AI ai, int health, float speed, float buildSpeed, int attackDamage,
@@ -30,7 +30,7 @@ public class Tank : MonoBehaviour
         _Ai.FogLookRange = _Lookrange;
         _Ai.fireRate = _fireRate;
         _Ai.attackRange = _attackRange;
-
+        _Ai.chaseRange = _chaserange;
     //base.setGameOBJ(this.gameObject);
 }
 

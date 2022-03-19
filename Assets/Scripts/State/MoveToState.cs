@@ -7,6 +7,7 @@ public class MoveToState : BaseState
 {
     private Actual_AI _Ai;
     private float attackTimer;
+    private Collider[] inRangeColliders;
     public MoveToState(Actual_AI ai) : base(ai.gameObject)
     {
         _Ai = ai;
@@ -40,8 +41,8 @@ public class MoveToState : BaseState
             {
                 var distanceToTarget = Vector3.Distance(transform.position, _Ai.Target.transform.position);
 
-                if (distanceToTarget <= GameSettings.AttackRange && _Ai.Target.gameObject.tag != "Building" ||
-                    distanceToTarget + 2 <= GameSettings.AttackRange && _Ai.Target.gameObject.tag == "Building")
+                if (distanceToTarget <= _Ai.attackRange && _Ai.Target.gameObject.tag != "Building" ||
+                    distanceToTarget + 2 <= _Ai.attackRange && _Ai.Target.gameObject.tag == "Building")
                 {
                     attackTimer -= Time.deltaTime;
 
@@ -63,45 +64,25 @@ public class MoveToState : BaseState
     private Transform CheckForAggro()
     {
         RaycastHit hit;
-        //var angle = transform.rotation * startingAngle;
-        //var direction = angle * Vector3.forward;
-        //for (var i = 0; i < 20; i++)
-        //{//Raycast(pos, direction, out hit, _Ai.FogLookRange)
-        if (Physics.SphereCast(transform.position, .6f, transform.forward, out hit))
+
+        inRangeColliders = Physics.OverlapSphere(transform.position, _Ai.chaseRange);
+
+        for (int i = 0; i < inRangeColliders.Length; i++)
         {
-            var ai = hit.collider.GetComponent<Actual_AI>();
-            var building = hit.collider.GetComponent<Building>();
-            var Turret = hit.collider.GetComponent<Turret>();
-            if (ai != null && ai.Teams != gameobj.GetComponent<Actual_AI>().Teams)
-            {
-                return ai.transform;
-            }
-            //else
-            //{
-            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
-            //}
-            if (building != null && building.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
-            {
-                return building.transform;
-            }
-            //else
-            //{
-            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
-            //}
-            if (Turret != null && Turret.Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
-            {
-                return Turret.transform;
-            }
-            //else
-            //{
-            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.yellow);
-            //}
-            //}
-            //else
-            //{
-            //    Debug.DrawRay(pos, direction * _Ai.FogLookRange, Color.white);
-            //}
-            //direction = stepAngle * direction;
+            var temp = inRangeColliders[i].gameObject;
+
+            if (inRangeColliders[i].gameObject.tag == "Unit")
+                if (temp.gameObject.GetComponent<Actual_AI>().Teams != gameobj.GetComponent<Actual_AI>().Teams)
+                    return temp.gameObject.transform;
+
+            if (inRangeColliders[i].gameObject.tag == "Building")
+                if (temp.gameObject.GetComponent<Building>().Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
+                    return temp.gameObject.transform;
+
+            if (inRangeColliders[i].gameObject.tag == "Turret")
+                if (temp.gameObject.GetComponent<Turret>().Teams.ToString() != gameobj.GetComponent<Actual_AI>().Teams.ToString())
+                    return temp.gameObject.transform;
+
         }
         return null;
     }
