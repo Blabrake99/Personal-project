@@ -31,6 +31,7 @@ public class Tank : MonoBehaviour
         _Ai.fireRate = _fireRate;
         _Ai.attackRange = _attackRange;
         _Ai.chaseRange = _chaserange;
+        _Ai.fullHealth = _health;
     //base.setGameOBJ(this.gameObject);
 }
 

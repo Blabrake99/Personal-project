@@ -26,7 +26,6 @@ public class Actual_AI : MonoBehaviour
 
     public Transform Target { get; private set; }
 
-
     [SerializeField]
     private Unit unit;
 
@@ -36,27 +35,25 @@ public class Actual_AI : MonoBehaviour
 
     public StateMachine Statemachine => GetComponent<StateMachine>();
 
-
     public Vector3 LastIdlePos { get; private set; }
 
     public bool IsIdle;
 
     public bool Selected { get; set; }
-    GameObject Player;
+
+    Players_Script Player;
     private void Awake()
     {        
         LastIdlePos = this.transform.position;
-        Player = GameObject.Find("PlayerOBJ");
+        Player = GameObject.Find("PlayerOBJ").GetComponent<Players_Script>();
         InitializeStateMachine();
-
+        //sets health if i forget to set full health value 
     }
-
     private void InitializeStateMachine()
     {
-        //initlizing dictinary with 3 states 
+        //initlizing dictinary with 5 states 
         //this is done so we can just reuse the state rather than regernerating a new 
         // version of that state 
-
 
         var states = new Dictionary<Type, BaseState>
         {
@@ -109,16 +106,13 @@ public class Actual_AI : MonoBehaviour
 
     protected void Update()
     {
-        if(fullHealth == 0)
-            fullHealth = health;
-
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
         //this figures out if the unit is selected by the player
-        if (Player.GetComponent<Players_Script>().SelectedUnitList.Count >= 0)
+        if (Player.isSelecting)
         {
-            for (int i = 0; i <= Player.GetComponent<Players_Script>().SelectedUnitList.Count; i++)
+            for (int i = 0; i <= Player.SelectedUnitList.Count; i++)
             {
-                if (Player.GetComponent<Players_Script>().SelectedUnitList.Contains(this.gameObject))
+                if (Player.SelectedUnitList.Contains(this.gameObject))
                 {
                     CircleOn();
                 }

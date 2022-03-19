@@ -23,7 +23,7 @@ public class PauseScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (IsPaused == true)
+            if (IsPaused)
             {
                 IsPaused = false;
 
@@ -34,7 +34,7 @@ public class PauseScript : MonoBehaviour
 
             }
         }
-        if (IsPaused == true)
+        if (IsPaused)
         {
             PauseGame();
             PauseCanvas.SetActive(true);
@@ -80,7 +80,7 @@ public class PauseScript : MonoBehaviour
             !RectTransformUtility.RectangleContainsScreenPoint(
                 panel.GetComponent<RectTransform>(),
                 Input.mousePosition,
-                Camera.main) && IsPaused == true)
+                Camera.main) && IsPaused)
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;

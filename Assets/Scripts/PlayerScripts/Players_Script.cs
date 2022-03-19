@@ -11,7 +11,7 @@ public class Players_Script : MonoBehaviour
 
     #region Unit Selecting
     //this is for the mouse selecting 
-    bool isSelecting = false;
+    public bool isSelecting = false;
     Vector3 mousePosition1;
     public GameObject[] UnitArr;
     public List<GameObject> SelectedUnitList;
@@ -59,7 +59,7 @@ public class Players_Script : MonoBehaviour
             SelectedUnitList.Clear();
             Ray rays = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(rays, out hit))
             {
                 if (hit.transform.gameObject.GetComponent<Actual_AI>() != null)
                     if (team.ToString() == hit.transform.gameObject.GetComponent<Actual_AI>().Teams.ToString())
