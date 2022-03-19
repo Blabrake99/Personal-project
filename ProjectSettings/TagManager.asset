@@ -13,6 +13,7 @@ TagManager:
   - Tree
   - Rock
   - Oil
+  - Turret
   layers:
   - Default
   - TransparentFX
