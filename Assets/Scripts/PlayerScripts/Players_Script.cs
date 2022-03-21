@@ -15,7 +15,8 @@ public class Players_Script : MonoBehaviour
     Vector3 mousePosition1;
     public GameObject[] UnitArr;
     public List<GameObject> SelectedUnitList;
-
+    public GameObject SelectedBuilding;
+    public GameObject OtherTeamUnitSelected;
     public Vector3 worldPosition;
 
     public int[] resources = new int[3];
@@ -57,13 +58,24 @@ public class Players_Script : MonoBehaviour
             mousePosition1 = Input.mousePosition;
 
             SelectedUnitList.Clear();
-            Ray rays = Camera.main.ScreenPointToRay(Input.mousePosition);
+            OtherTeamUnitSelected = null;
+            SelectedBuilding = null;
             RaycastHit hit;
-            if (Physics.Raycast(rays, out hit))
+            if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.gameObject.GetComponent<Actual_AI>() != null)
+                {
                     if (team.ToString() == hit.transform.gameObject.GetComponent<Actual_AI>().Teams.ToString())
+                    {
                         SelectedUnitList.Add(hit.transform.gameObject);
+                    }
+                    else
+                    {
+                        OtherTeamUnitSelected = hit.transform.gameObject;
+                    }
+                }
+                if (hit.transform.gameObject.tag == "Building")
+                    SelectedBuilding = hit.transform.gameObject;
             }
         }
         // If we let go of the left mouse button, end selection

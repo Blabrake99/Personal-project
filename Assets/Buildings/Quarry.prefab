@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8503381032249733353}
   - component: {fileID: 8503381032249733358}
   - component: {fileID: 7845196740251325975}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Quarry
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -128,4 +128,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 7
   health: 500
+  fullHealth: 500
   resources: 1

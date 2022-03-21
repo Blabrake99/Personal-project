@@ -17,15 +17,15 @@ public class MoveToState : BaseState
         if (_Ai.GoToArea == Vector3.zero)
             return typeof(IdleState);
 
-        transform.LookAt(_Ai.GoToArea);
-        transform.Translate(Vector3.forward * Time.deltaTime * GameSettings.Speed);
+        _Ai.MoveUnit(_Ai.GoToArea);
 
         var distance = Vector3.Distance(transform.position, _Ai.GoToArea);
         if (distance <= .3f)
         {
             _Ai.Selected = false;
+            _Ai.StopUnit();
             _Ai.GoToArea = Vector3.zero;
-            if(!CheckForAggro())
+            if (!CheckForAggro())
                 return typeof(IdleState);
             else
             {

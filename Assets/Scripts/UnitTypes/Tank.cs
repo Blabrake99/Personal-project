@@ -8,7 +8,7 @@ public class Tank : MonoBehaviour
     private Actual_AI _Ai;
 
     private int _health = 200;
-    private float _speed = 3;
+    private float _speed = 8;
     private int _attackDamage = 50;
     private float _Lookrange = 5;
     private float _fireRate = .4f;
@@ -32,8 +32,9 @@ public class Tank : MonoBehaviour
         _Ai.attackRange = _attackRange;
         _Ai.chaseRange = _chaserange;
         _Ai.fullHealth = _health;
-    //base.setGameOBJ(this.gameObject);
-}
+        _Ai.moveSpeed = _speed;
+        //base.setGameOBJ(this.gameObject);
+    }
 
     //public override Type Tick()
     //{

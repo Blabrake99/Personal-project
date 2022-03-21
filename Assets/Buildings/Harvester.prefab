@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2312274510401381549}
   - component: {fileID: 2312274510401381546}
   - component: {fileID: 4236609938582635091}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Harvester
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -128,4 +128,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 7
   health: 500
+  fullHealth: 500
   resources: 0

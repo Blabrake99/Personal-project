@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+[RequireComponent(typeof(NavMeshAgent))]
 public class Actual_AI : MonoBehaviour
 {
 
@@ -14,10 +16,13 @@ public class Actual_AI : MonoBehaviour
     public float fireRate;
     public float attackRange;
     public float chaseRange;
+    public float moveSpeed;
     #endregion
 
     [SerializeField]
     private Team team;
+
+    public NavMeshAgent navAgent;
 
     public Team Teams => team;
 
@@ -43,7 +48,7 @@ public class Actual_AI : MonoBehaviour
 
     Players_Script Player;
     private void Awake()
-    {        
+    {
         LastIdlePos = this.transform.position;
         Player = GameObject.Find("PlayerOBJ").GetComponent<Players_Script>();
         InitializeStateMachine();
@@ -66,7 +71,15 @@ public class Actual_AI : MonoBehaviour
 
         GetComponent<StateMachine>().SetStates(states);
     }
-
+    private void Start()
+    {
+        Invoke("enableNavAgent", .1f);
+    }
+    void enableNavAgent()
+    {
+        navAgent.enabled = true;
+        navAgent.speed = moveSpeed;
+    }
     public void SetTarget(Transform target)
     {
         Target = target;
@@ -106,6 +119,7 @@ public class Actual_AI : MonoBehaviour
 
     protected void Update()
     {
+
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
         //this figures out if the unit is selected by the player
         if (Player.isSelecting)
@@ -156,9 +170,22 @@ public class Actual_AI : MonoBehaviour
         Solder,
         Helicopter
     }
+    public void MoveUnit(Vector3 _destination)
+    {
+        if (navAgent.enabled)
+        {
+            navAgent.isStopped = false;
+            if (navAgent.destination != _destination)
+                navAgent.SetDestination(_destination);
+        }
+    }
+    public void StopUnit()
+    {
+        navAgent.isStopped = true;
+    }
     public void GoToLastIdlePos()
     {
-        GoToArea = LastIdlePos;
+        MoveUnit(LastIdlePos);
         Selected = true;
     }
     public void SetTeam(String t)

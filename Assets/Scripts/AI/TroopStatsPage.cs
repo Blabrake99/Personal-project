@@ -36,7 +36,7 @@ public class TroopStatsPage : MonoBehaviour
                 HpNumber.SetActive(true);
                 HpNumber.GetComponent<Text>().text = "Health: " +
                     Player.SelectedUnitList[0].GetComponent<Actual_AI>().health.ToString() + " / " + 
-                    Player.SelectedUnitList[0].GetComponent<Actual_AI>().fullHealth.ToString(); ;
+                    Player.SelectedUnitList[0].GetComponent<Actual_AI>().fullHealth.ToString();
 
                 UnitsTeam.SetActive(true);
                 UnitsTeam.GetComponent<Text>().text = "Team: " +
@@ -48,7 +48,21 @@ public class TroopStatsPage : MonoBehaviour
                     Player.SelectedUnitList[0].GetComponent<Actual_AI>().health);
             } else
             {
-                //this is here so the slider will get deactivated if the unit dies
+                if (Player.SelectedBuilding == null && Player.OtherTeamUnitSelected == null)
+                {
+                    //this is here so the slider will get deactivated if the unit dies
+                    UnitsTeam.SetActive(false);
+                    SliderScript.gameObject.SetActive(false);
+                    UnitAttack.SetActive(false);
+                    HpNumber.SetActive(false);
+                    UnitInfoPage.SetActive(false);
+                }
+            }
+        }
+        else 
+        {
+            if (Player.SelectedBuilding == null && Player.OtherTeamUnitSelected == null)
+            {
                 UnitsTeam.SetActive(false);
                 SliderScript.gameObject.SetActive(false);
                 UnitAttack.SetActive(false);
@@ -56,13 +70,64 @@ public class TroopStatsPage : MonoBehaviour
                 UnitInfoPage.SetActive(false);
             }
         }
-        else 
+        if(Player.OtherTeamUnitSelected != null)
         {
-            UnitsTeam.SetActive(false);
-            SliderScript.gameObject.SetActive(false);
-            UnitAttack.SetActive(false);
-            HpNumber.SetActive(false);
-            UnitInfoPage.SetActive(false);
+            UnitInfoPage.SetActive(true);
+
+            UnitAttack.SetActive(true);
+            UnitAttack.GetComponent<Text>().text = "Attack Damage: " +
+                Player.OtherTeamUnitSelected.GetComponent<Actual_AI>().attackDamage.ToString();
+
+            HpNumber.SetActive(true);
+            HpNumber.GetComponent<Text>().text = "Health: " +
+                Player.OtherTeamUnitSelected.GetComponent<Actual_AI>().health.ToString() + " / " +
+                Player.OtherTeamUnitSelected.GetComponent<Actual_AI>().fullHealth.ToString();
+
+            UnitsTeam.SetActive(true);
+            UnitsTeam.GetComponent<Text>().text = "Team: " +
+                Player.OtherTeamUnitSelected.GetComponent<Actual_AI>().Teams.ToString();
+
+
+            SliderScript.gameObject.SetActive(true);
+            SliderScript.SetHealth(Player.OtherTeamUnitSelected.GetComponent<Actual_AI>().fullHealth,
+                Player.OtherTeamUnitSelected.GetComponent<Actual_AI>().health);
+        }    
+        if (Player.SelectedBuilding != null)
+        {
+            if (Player.SelectedBuilding.GetComponent<Harvester>())
+            {
+                UnitInfoPage.SetActive(true);
+
+                HpNumber.SetActive(true);
+                HpNumber.GetComponent<Text>().text = "Health: " +
+                    Player.SelectedBuilding.GetComponent<Harvester>().health.ToString() + " / " +
+                    Player.SelectedBuilding.GetComponent<Harvester>().fullHealth.ToString();
+
+                UnitsTeam.SetActive(true);
+                UnitsTeam.GetComponent<Text>().text = "Team: " +
+                    Player.SelectedBuilding.GetComponent<Harvester>().Teams.ToString();
+
+
+                SliderScript.gameObject.SetActive(true);
+                SliderScript.SetHealth(Player.SelectedBuilding.GetComponent<Harvester>().fullHealth,
+                    Player.SelectedBuilding.GetComponent<Harvester>().health);
+            }
+            if(Player.SelectedBuilding.GetComponent<Building>())
+            {
+                HpNumber.SetActive(true);
+                HpNumber.GetComponent<Text>().text = "Health: " +
+                    Player.SelectedBuilding.GetComponent<Building>().health.ToString() + " / " +
+                    Player.SelectedBuilding.GetComponent<Building>().fullHealth.ToString();
+
+                UnitsTeam.SetActive(true);
+                UnitsTeam.GetComponent<Text>().text = "Team: " +
+                    Player.SelectedBuilding.GetComponent<Building>().Teams.ToString();
+
+
+                SliderScript.gameObject.SetActive(true);
+                SliderScript.SetHealth(Player.SelectedBuilding.GetComponent<Building>().fullHealth,
+                    Player.SelectedBuilding.GetComponent<Building>().health);
+            }
         }
     }
 }

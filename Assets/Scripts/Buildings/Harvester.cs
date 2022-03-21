@@ -11,6 +11,7 @@ public class Harvester : MonoBehaviour
 
     public int health = 500;
 
+    public int fullHealth = 500;
     [SerializeField]
     private Resources resources;
 

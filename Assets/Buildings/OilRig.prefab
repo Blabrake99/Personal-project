@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4677682132572274172}
   - component: {fileID: 4677682132572274171}
   - component: {fileID: 6500902347304655618}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: OilRig
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -128,4 +128,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 7
   health: 500
+  fullHealth: 500
   resources: 2

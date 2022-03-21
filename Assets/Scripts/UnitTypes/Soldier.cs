@@ -6,7 +6,7 @@ public class Soldier : MonoBehaviour
 {
     private Actual_AI _Ai;
     private int _health =100;
-    private float _speed = 3;
+    private float _speed = 5;
     private int _attackDamage = 20;
     private float _fogRange = 5;
     private float _fireRate = .2f;
@@ -34,6 +34,7 @@ public class Soldier : MonoBehaviour
         _Ai.attackRange = _attackRange;
         _Ai.chaseRange = _chaserange;
         _Ai.fullHealth = _health;
+        _Ai.moveSpeed = _speed;
         //base.setGameOBJ(this.gameObject);
     }
     

@@ -7,8 +7,6 @@ public class ChaseState : BaseState
 {
     private Actual_AI _Ai;
 
-
-
     public ChaseState(Actual_AI ai) : base(ai.gameObject)
     {
         _Ai = ai;
@@ -19,8 +17,7 @@ public class ChaseState : BaseState
         if (_Ai.Target == null)
             return typeof(IdleState);
 
-        transform.LookAt(_Ai.Target);
-        transform.Translate(Vector3.forward * Time.deltaTime * GameSettings.Speed);
+        _Ai.MoveUnit(_Ai.GoToArea);
 
         var distance = Vector3.Distance(transform.position, _Ai.Target.transform.position);
         

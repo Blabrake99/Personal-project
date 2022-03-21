@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 public class Building : MonoBehaviour
 {
     [SerializeField]
@@ -8,7 +9,7 @@ public class Building : MonoBehaviour
     public Team Teams => team;
 
     public int health = 500;
-
+    public int fullHealth = 500;
     [SerializeField]
     Players_Script player;
 
@@ -135,12 +136,17 @@ public class Building : MonoBehaviour
         {
             BuildingOBJ.GetComponent<Button_Unit>().spawnCounter -= 1;
         }
-
-        temp = Instantiate(Unit[0], this.gameObject.transform.position - new Vector3(0, -.5f, this.gameObject.transform.localScale.z), Quaternion.identity);
+        temp = Instantiate(Unit[0], this.gameObject.transform.position - new Vector3(0, 0, this.gameObject.transform.localScale.z), Quaternion.identity);
+        NavMeshHit hit;
+        if(NavMesh.SamplePosition(this.gameObject.transform.position - new Vector3(0, 2, this.gameObject.transform.localScale.z), out hit, 70, 1))
+        {
+            temp.GetComponent<NavMeshAgent>().Warp(hit.position);
+        }
         temp.GetComponent<Actual_AI>().SetTeam(Teams.ToString());
         Unit.Remove(Unit[0]);
         tempCounter = Unit.Count;
     }
+    
     public void DestroySpawnPoint()
     {
         if (Spawner != null)
