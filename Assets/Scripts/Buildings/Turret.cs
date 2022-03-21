@@ -6,7 +6,7 @@ public class Turret : MonoBehaviour
 {
     [SerializeField]
     private Team team;
-
+    private Collider[] inRangeColliders;
     public Team Teams => team;
 
     public Transform Target;
@@ -95,46 +95,25 @@ public class Turret : MonoBehaviour
     private Transform CheckForAggro()
     {
         RaycastHit hit;
-        var angle = transform.rotation * startingAngle;
-        var direction = angle * Vector3.forward;
-        var pos = transform.position;
-        for (var i = 0; i < 10; i++)
+
+        inRangeColliders = Physics.OverlapSphere(transform.position, 5);
+
+        for (int i = 0; i < inRangeColliders.Length; i++)
         {
-            if (Physics.Raycast(pos, direction, out hit, _attackRange))
-            {
-                var ai = hit.collider.GetComponent<Actual_AI>();
-                var building = hit.collider.GetComponent<Building>();
-                var Turret = hit.collider.GetComponent<Turret>();
-                if (ai != null && ai.Teams.ToString() != team.ToString())
-                {
-                    return ai.transform;
-                }
-                else
-                {
-                    Debug.DrawRay(pos, direction * _attackRange, Color.yellow);
-                }
-                if (building != null && building.Teams.ToString() != team.ToString())
-                {
-                    return building.transform;
-                }
-                else
-                {
-                    Debug.DrawRay(pos, direction * _attackRange, Color.yellow);
-                }
-                if (Turret != null && Turret.Teams.ToString() != team.ToString())
-                {
-                    return Turret.transform;
-                }
-                else
-                {
-                    Debug.DrawRay(pos, direction * _attackRange, Color.yellow);
-                }
-            }
-            else
-            {
-                Debug.DrawRay(pos, direction * FogLookRange, Color.white);
-            }
-            direction = stepAngle * direction;
+            var temp = inRangeColliders[i].gameObject;
+
+            if (inRangeColliders[i].gameObject.tag == "Unit")
+                if (temp.gameObject.GetComponent<Actual_AI>().Teams.ToString() != Teams.ToString())
+                    return temp.gameObject.transform;
+
+            if (inRangeColliders[i].gameObject.tag == "Building")
+                if (temp.gameObject.GetComponent<Building>().Teams.ToString() != Teams.ToString())
+                    return temp.gameObject.transform;
+
+            if (inRangeColliders[i].gameObject.tag == "Turret")
+                if (temp.gameObject.GetComponent<Turret>().Teams.ToString() != Teams.ToString())
+                    return temp.gameObject.transform;
+
         }
         return null;
     }
