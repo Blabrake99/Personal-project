@@ -93,7 +93,7 @@ public class Actual_AI : MonoBehaviour
             if (Target.GetComponent<Actual_AI>() != null)
             {
                 //the target loses health based on our attack damage 
-                Target.GetComponent<Actual_AI>().health -= attackDamage;
+                Target.GetComponent<Actual_AI>().health -= GetDamageDone(Target.GetComponent<Actual_AI>());
                 //this will let the target know who's attacking him 
                 if (Target.GetComponent<Actual_AI>().Target == null)
                 {
@@ -170,6 +170,38 @@ public class Actual_AI : MonoBehaviour
         Tank,
         Solder,
         Helicopter
+    }
+    int GetDamageDone(Actual_AI target)
+    {
+        if (unit == Unit.Solder)
+        {
+            if (target.unit == Unit.Helicopter)
+                return Mathf.RoundToInt(attackDamage * 1.5f);
+            else if (target.unit == Unit.Tank)
+                return Mathf.RoundToInt(attackDamage * .5f);
+            else
+                return attackDamage;
+
+        }
+        if (unit == Unit.Tank)
+        {
+            if (target.unit == Unit.Helicopter)
+                return Mathf.RoundToInt(attackDamage * .5f);
+            else if (target.unit == Unit.Solder)
+                return Mathf.RoundToInt(attackDamage * 1.5f);
+            else
+                return attackDamage;
+        }
+        if (unit == Unit.Helicopter)
+        {
+            if (target.unit == Unit.Helicopter)
+                return attackDamage;
+            else if (target.unit == Unit.Solder)
+                return Mathf.RoundToInt(attackDamage * .5f);
+            else
+                return Mathf.RoundToInt(attackDamage * 1.5f);
+        }
+        return attackDamage;
     }
     public void MoveUnit(Vector3 _destination)
     {
