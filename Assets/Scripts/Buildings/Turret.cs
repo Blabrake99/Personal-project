@@ -25,18 +25,18 @@ public class Turret : MonoBehaviour
     void Update()
     {
         var target = CheckForAggro();
-        if(gameObject.transform.rotation.x < 0 || gameObject.transform.rotation.x >0)
-        {
-            gameObject.transform.rotation = new Quaternion(0,transform.rotation.y,0,0);
-        }
-        if (gameObject.transform.rotation.z < 0 || gameObject.transform.rotation.z > 0)
-        {
-            gameObject.transform.rotation = new Quaternion(0, transform.rotation.y, 0, 0);
-        }
+        //if(gameObject.transform.rotation.x < 0 || gameObject.transform.rotation.x >0)
+        //{
+        //    gameObject.transform.rotation = new Quaternion(0,transform.rotation.y,0,0);
+        //}
+        //if (gameObject.transform.rotation.z < 0 || gameObject.transform.rotation.z > 0)
+        //{
+        //    gameObject.transform.rotation = new Quaternion(0, transform.rotation.y, 0, 0);
+        //}
         if (target != null)
         {
             Target = target;
-            transform.LookAt(Target);
+            //transform.LookAt(Target);
             _fireRate -= Time.deltaTime;
             if(_fireRate <= 0)
             {
@@ -45,13 +45,14 @@ public class Turret : MonoBehaviour
             }
             
 
-        } else if (target == null && RandomRotateTimer <= 0)
-        {
-            transform.rotation = new Quaternion( transform.rotation.x,Random.rotation.y, 
-                transform.rotation.z, transform.rotation.w);
-            RandomRotateTimer = Random.Range(2, 4);
-        }
-        RandomRotateTimer -= Time.deltaTime;
+        } 
+        //else if (target == null && RandomRotateTimer <= 0)
+        //{
+        //    transform.rotation = new Quaternion( transform.rotation.x,Random.rotation.y, 
+        //        transform.rotation.z, transform.rotation.w);
+        //    RandomRotateTimer = Random.Range(2, 4);
+        //}
+        //RandomRotateTimer -= Time.deltaTime;
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -90,8 +91,8 @@ public class Turret : MonoBehaviour
         }
     }
 
-    Quaternion startingAngle = Quaternion.AngleAxis(-20, Vector3.up);
-    Quaternion stepAngle = Quaternion.AngleAxis(10, Vector3.up);
+    //Quaternion startingAngle = Quaternion.AngleAxis(-20, Vector3.up);
+    //Quaternion stepAngle = Quaternion.AngleAxis(10, Vector3.up);
     private Transform CheckForAggro()
     {
         RaycastHit hit;

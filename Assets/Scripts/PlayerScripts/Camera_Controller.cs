@@ -5,6 +5,10 @@ public class Camera_Controller : MonoBehaviour
 {
     //camera move speed 
     public float panSpeed = 20;
+
+    public float MaxPanSpeed = 40;
+
+    public float acceleration = .2f;
     //for mouse movement 
     public float panBorderThickness = 10f;
     //this if for the bounds of the camera 
@@ -17,6 +21,11 @@ public class Camera_Controller : MonoBehaviour
     public float MaxY = 120f;
     public float MinY = 20f;
 
+    float originalPanSpeed;
+    private void Start()
+    {
+        originalPanSpeed = panSpeed;
+    }
     void Update()
     {
         //get camera position for better movement
@@ -38,7 +47,15 @@ public class Camera_Controller : MonoBehaviour
         {
             pos.x -= panSpeed * Time.deltaTime;
         }
-
+        if(!Input.anyKey && Input.mousePosition.y <= Screen.height - panBorderThickness && Input.mousePosition.y >= panBorderThickness 
+            && Input.mousePosition.x <= Screen.width - panBorderThickness && Input.mousePosition.x >= panBorderThickness && panSpeed > originalPanSpeed)
+        {
+            panSpeed -= acceleration * Time.deltaTime;
+        }
+        else if (panSpeed < MaxPanSpeed)
+        {
+            panSpeed += acceleration * Time.deltaTime;
+        }
         //used to detect when the user has scrolled 
         float Scroll = Input.GetAxis("Mouse ScrollWheel");
 

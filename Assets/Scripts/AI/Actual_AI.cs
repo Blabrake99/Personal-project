@@ -83,6 +83,7 @@ public class Actual_AI : MonoBehaviour
     public void SetTarget(Transform target)
     {
         Target = target;
+        GoToArea = target.transform.position;
     }
 
     public void Fire()
@@ -172,7 +173,7 @@ public class Actual_AI : MonoBehaviour
     }
     public void MoveUnit(Vector3 _destination)
     {
-        if (navAgent.enabled)
+        if (navAgent.enabled && GoToArea != Vector3.zero)
         {
             navAgent.isStopped = false;
             if (navAgent.destination != _destination)
