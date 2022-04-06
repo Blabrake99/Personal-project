@@ -47,6 +47,8 @@ public class Camera_Controller : MonoBehaviour
         {
             pos.x -= panSpeed * Time.deltaTime;
         }
+
+        //accelaration 
         if(!Input.anyKey && Input.mousePosition.y <= Screen.height - panBorderThickness && Input.mousePosition.y >= panBorderThickness 
             && Input.mousePosition.x <= Screen.width - panBorderThickness && Input.mousePosition.x >= panBorderThickness && panSpeed > originalPanSpeed)
         {
