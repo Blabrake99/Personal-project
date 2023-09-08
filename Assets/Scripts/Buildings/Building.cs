@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class Building : MonoBehaviour
+public class Building : MonoBehaviour, IBuilding
 {
     [SerializeField]
     private Team team;
@@ -158,6 +158,12 @@ public class Building : MonoBehaviour
     {
         team = (Team)System.Enum.Parse(typeof(Team), t);
     }
+
+    public string GetTeam()
+    {
+        return Teams.ToString();
+    }
+
     public enum Team
     {
         blue,

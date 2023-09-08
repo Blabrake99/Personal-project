@@ -7,8 +7,11 @@ public class BluePrint : MonoBehaviour
     public GameObject prefab;
     Material Mat;
     List<Collider> ColliderList = new List<Collider>();
+    public int[] costs = new int[3];
+    Players_Script PS;
     void Start()
     {
+        PS = GameObject.Find("PlayerOBJ").GetComponent<Players_Script>();
         Mat = gameObject.GetComponent<Renderer>().material;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
@@ -32,6 +35,9 @@ public class BluePrint : MonoBehaviour
                 if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.KeypadEnter))
                 {
                     Instantiate(prefab, this.gameObject.transform.position, transform.rotation);
+                    PS.resources[0] -= costs[0];
+                    PS.resources[1] -= costs[1];
+                    PS.resources[2] -= costs[2];
                     Destroy(gameObject);
                 }
             }

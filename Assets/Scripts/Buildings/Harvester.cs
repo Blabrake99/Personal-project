@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Harvester : MonoBehaviour
+public class Harvester : MonoBehaviour, IBuilding
 {
     [SerializeField]
     private Team team;
@@ -57,6 +57,12 @@ public class Harvester : MonoBehaviour
     {
         team = (Team)System.Enum.Parse(typeof(Team), t);
     }
+
+    public string GetTeam()
+    {
+        return Teams.ToString();
+    }
+
     public enum Team
     {
         blue,

@@ -101,20 +101,25 @@ public class Turret : MonoBehaviour
 
         for (int i = 0; i < inRangeColliders.Length; i++)
         {
-            var temp = inRangeColliders[i].gameObject;
+            if (inRangeColliders[i].gameObject != null)
+            {
+                var temp = inRangeColliders[i].gameObject;
 
-            if (inRangeColliders[i].gameObject.tag == "Unit")
-                if (temp.gameObject.GetComponent<Actual_AI>().Teams.ToString() != Teams.ToString())
-                    return temp.gameObject.transform;
+                if (inRangeColliders[i].gameObject.tag == "Unit")
+                    if (temp.gameObject.GetComponent<Actual_AI>().Teams.ToString() != Teams.ToString())
+                        return temp.gameObject.transform;
 
-            if (inRangeColliders[i].gameObject.tag == "Building")
-                if (temp.gameObject.GetComponent<Building>().Teams.ToString() != Teams.ToString())
-                    return temp.gameObject.transform;
-
-            if (inRangeColliders[i].gameObject.tag == "Turret")
-                if (temp.gameObject.GetComponent<Turret>().Teams.ToString() != Teams.ToString())
-                    return temp.gameObject.transform;
-
+                if (inRangeColliders[i].gameObject.tag == "Building")
+                {
+                    IBuilding building = (IBuilding)temp.GetComponent(typeof(IBuilding));
+                    if(building == null) break;
+                    if (building.GetTeam() != Teams.ToString())
+                        return temp.gameObject.transform;
+                }
+                if (inRangeColliders[i].gameObject.tag == "Turret")
+                    if (temp.gameObject.GetComponent<Turret>().Teams.ToString() != Teams.ToString())
+                        return temp.gameObject.transform;
+            }
         }
         return null;
     }
