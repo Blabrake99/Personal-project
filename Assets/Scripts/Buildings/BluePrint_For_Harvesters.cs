@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BluePrint_For_Harvesters : MonoBehaviour
+public class BluePrint_For_Harvesters : MonoBehaviour, IBlueprint
 {
     RaycastHit hit;
     bool InRadiusOfResources;
@@ -70,5 +70,10 @@ public class BluePrint_For_Harvesters : MonoBehaviour
         {
             ColliderList.Remove(c);
         }
+    }
+
+    public int[] getCosts()
+    {
+        return costs;
     }
 }

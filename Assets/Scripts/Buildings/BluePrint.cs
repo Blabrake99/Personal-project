@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-public class BluePrint : MonoBehaviour
+public class BluePrint : MonoBehaviour, IBlueprint
 {
     RaycastHit hit;
     Vector3 movePoint;
@@ -68,5 +68,8 @@ public class BluePrint : MonoBehaviour
             ColliderList.Remove(c);
         }
     }
-
+    public int[] getCosts()
+    {
+        return costs;
+    }
 }
